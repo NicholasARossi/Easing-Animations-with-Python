@@ -6,7 +6,8 @@ import matplotlib.cm as cm
 
 
 class Eased:
-    """ This class takes the original time vector and raw data (in n-dimensions) along with an output vector and interpelation function to """
+    """ This class takes the original time vector and raw data (as a m*n matrix) along with an output vector and interpolation function
+    For the input data, the rows are the different variables and the columns correspond to the time points"""
 
     def __init__(self, data, in_t, out_t):
         self.int_t = in_t
@@ -86,7 +87,7 @@ class Eased:
 
 
 if __name__ == "__main__":
-    """ This main funciton runs an example animation comapring the different """
+    """ This main funciton runs an example animation comapring the different animation styles """
     plt.close('all')
     colors = ['#a8e6cf', '#dcedc1', '#ffd3b6', '#ffaaa5', '#ff8b94']
     colors = cm.rainbow(np.linspace(0, 1, 10))
@@ -102,13 +103,16 @@ if __name__ == "__main__":
     input_time_vector = np.arange(0, 10, 1)
     output_time_vector = np.linspace(0, 10, 2000)
     ease = Eased(data, input_time_vector, output_time_vector)
-
+    labels=['No Interpolation']
     data_list = [ease.No_interp()]
     for r in range(9):
         data_list.append(ease.power_ease(r + 1))
+        labels.append(str(r))
     for r in  range(10):
-        ax0.plot(output_time_vector,data_list[r],color=colors[r], linewidth=3, alpha=0.75)
-    fig_traces.savefig('traces.png',dpi=300)
+        ax0.plot(output_time_vector[0:401],data_list[r][0:401],color=colors[r], linewidth=3, alpha=0.75,label=labels[r])
+    ax0.legend(title='exponent')
+    plt.axis('off')
+    fig_traces.savefig('media/traces.png',dpi=300)
     dots = []
     for i, data in enumerate(data_list):
         dots.append(ax.plot([], [], linestyle='none', marker='h', markersize=30, color=colors[i]))
@@ -128,4 +132,4 @@ if __name__ == "__main__":
 
     writer = animation.writers['ffmpeg'](fps=60)
     dpi=300
-    anim.save('interp.mp4', writer=writer,dpi=dpi)
+    anim.save('media/interp.mp4', writer=writer,dpi=dpi)
