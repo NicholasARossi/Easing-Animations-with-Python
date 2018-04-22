@@ -17,10 +17,6 @@ class Eased:
         self.n_dims = len(np.shape(data))
 
 
-    def test(self):
-        self.eased = np.zeros((np.shape(self.data)[0], len(self.out_t)))
-
-        return self.n_steps, np.shape(self.eased)
 
     def No_interp(self):
         #if else determines if there are multiple dimensions
@@ -98,7 +94,6 @@ if __name__ == "__main__":
     ax.set_xlim([-0.1,1.1])
     ax.set_ylim([-0.1,5])
 
-    # data = np.vstack((np.cos(np.linspace(0, 5*np.pi, 10)),np.sin(np.linspace(0, 5*np.pi, 10))))
     data=np.array([0,1,0,1,0,1,0,1,0,1])
     input_time_vector = np.arange(0, 10, 1)
     output_time_vector = np.linspace(0, 10, 2000)
