@@ -1,4 +1,3 @@
-import pandas as pd
 import numpy as np
 from matplotlib import animation, rc
 import matplotlib.pyplot as plt
@@ -12,7 +11,7 @@ def main():
     fig_animate, ax = plt.subplots(figsize=(12, 12))
     fig_static, static=plt.subplots(figsize=(12,6))
     ax.set_xlim([-1, 10])
-    ax.set_ylim([-1, 6])
+    ax.set_ylim([-1, 5])
     lines = []
     colors = ['#355C7D', '#6C5B7B', '#C06C84', '#F67280']
     line_links=[[1, 2],[3, 4],[5, 6],[7,  8]]
@@ -23,7 +22,7 @@ def main():
 
     num_frames=2000
     interpolations=[]
-    data_vect=[0,1,3,4,5,0,1,3,4,5,0,1,3,4,5,0,1,3,4,5]
+    data_vect=[0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4]
     t_new=np.linspace(0, len(data_vect), num_frames)
     interpolations.append(easing.Eased(data_vect, data_vect, t_new).No_interp())
     ease_vals=[1,2,5]
