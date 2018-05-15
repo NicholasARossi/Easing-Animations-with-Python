@@ -12,19 +12,19 @@ class Eased:
     def __init__(self, data, in_t, out_t):
         self.int_t = in_t
         self.out_t = out_t
-        self.n_steps = int(len(out_t) / len(in_t))
+        self.n_steps = np.ceil(len(out_t) / len(in_t))
         self.data = data
         self.n_dims = len(np.shape(data))
 
 
 
     def No_interp(self):
-        #if else determines if there are multiple dimensions
-        if self.n_dims == 1:
+        #This Function maps the input vecotor over the outuput time vector without interoplation
+        if self.n_dims == 1: # if the input is only one row
             self.eased = np.zeros((len(self.out_t), 1))
             for i, t in enumerate(self.out_t):
                 self.eased[i] = self.data[int(np.floor(i / self.n_steps))]
-        else:
+        else: #if the input is a multidimensional row
             self.eased = np.zeros((np.shape(self.data)[0], len(self.out_t)))
             for z in range(np.shape(self.data)[0]):
                 for i, t in enumerate(self.out_t):
@@ -34,7 +34,6 @@ class Eased:
 
     def power_ease(self, n):
         sign = n % 2 * 2
-        #         # run over all dimensions
         if self.n_dims == 1:
             self.eased = np.zeros((len(self.out_t), 1))
             j = 0

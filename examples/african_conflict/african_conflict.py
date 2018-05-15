@@ -5,7 +5,11 @@ import matplotlib.pyplot as plt
 import sys
 sys.path.append('../../')
 import easing
-plt.style.use('rossidata')
+import time
+
+import progressbar
+
+# plt.style.use('rossidata')
 
 ### The functions below are used to make smooth colors
 def linear_gradient(start_hex, finish_hex="#FFFFFF", n=10):
@@ -73,17 +77,16 @@ def main():
 
 
     ### plotting histograms:
-
-
-    data = pd.read_csv('african_conflicts-1.csv', encoding="ISO-8859-1")
     data = data.sort_values(by=['YEAR'])
     data['SUM_FATALITIES'] = np.cumsum(data['FATALITIES'])
 
     cum_sums = [0]
     maximums = pd.DataFrame()
+
+    # sorting the data an caluculating the cumulative deaths over time
     for j, yar in enumerate(np.arange(1997, 2018)):
         cum_sums.append(data[data.YEAR == yar].iloc[-1].SUM_FATALITIES)
-        slic0 = data.FATALITIES[data.YEAR == yar]
+        # This is the largest death per year, for tracking the ping-poing
         maximums = maximums.append(data[data.YEAR == yar].sort_values(by=['FATALITIES']).iloc[-1])
 
 
@@ -103,25 +106,36 @@ def main():
 
     timetext = ax.text(0, 800000, '')
     lines = []
-    colors = ['#a8e6cf', '#dcedc1', '#ffd3b6', '#ffaaa5', '#ff8b94']
+    colors = ['#a8e6cf', '#dcedc1', '#ffd3b6', '#ffaaa5']
+    line_links=[[1, 2],[3, 4],[5, 6],[7,  8]]
 
-    line_links=[[1, 1, 2, 2],[3, 3, 4, 4],[5, 5, 6, 6],[7, 7, 8, 8]]
-    lines.append(ax.plot([1, 1, 2, 2], [0, 0, 0, 0], color='black'))
-    lines.append(ax.plot([3, 3, 4, 4], [0, 0, 0, 0], color='black'))
-    lines.append(ax.plot([5, 5, 6, 6], [0, 0, 0, 0], color='black'))
-    lines.append(ax.plot([7, 7, 8, 8], [0, 0, 0, 0], color='black'))
+
+    for n, color in enumerate(colors):
+        lines.append(ax.fill_between(line_links[n], [0, 0], color=colors[n]))
+
+
+    num_frames=1000
     interpolations=[]
-    interpolations.append(easing.Eased(cum_sums, np.arange(0, len(cum_sums), 1), np.linspace(0, len(cum_sums), 1000)).No_interp())
+    interpolations.append(easing.Eased(cum_sums, np.arange(0, len(cum_sums), 1), np.linspace(0, len(cum_sums), num_frames)).No_interp())
 
     for j in range(3):
-        interpolations.append(easing.Eased(cum_sums, np.arange(0, len(cum_sums), 1), np.linspace(0, len(cum_sums), 1000)).power_ease(j+1))
+        interpolations.append(easing.Eased(cum_sums, np.arange(0, len(cum_sums), 1), np.linspace(0, len(cum_sums), num_frames)).power_ease(j+1))
 
+    bar = progressbar.ProgressBar(max_value=num_frames)
 
     def animate(z):
         for l,interpolation in enumerate(interpolations):
-            lines[l][0].set_data(line_links[l], [0, interpolation[z], interpolation[z], 0])
+            #slow way:
+            path = lines[l].get_paths()[0]
+            path.vertices[[0,3,4,5,6], 1] = interpolation[z]
+        #     #fast way:
+        #     # lines[l][0].set_data(line_links[l], [0, interpolation[z], interpolation[z], 0])
+
+
 
         timetext.set_text(str(z))
+        bar.update(z)
+
         return lines
 
     anim3 = animation.FuncAnimation(fig_animate, animate,frames=1000, blit=False)
