@@ -10,6 +10,7 @@ def main():
     plt.close('all')
     fig_animate, ax = plt.subplots(figsize=(12, 12))
     fig_static, static=plt.subplots(figsize=(12,6))
+    plt.axis('off')
     ax.set_xlim([-1, 10])
     ax.set_ylim([-1, 5])
     lines = []
@@ -22,7 +23,7 @@ def main():
 
     num_frames=2000
     interpolations=[]
-    data_vect=[0,1,2,3,4,0,1,2,3,4,0,1,2,3,4,0,1,2,3,4]
+    data_vect=[0,1,2,3,4,5,0]
     t_new=np.linspace(0, len(data_vect), num_frames)
     interpolations.append(easing.Eased(data_vect, data_vect, t_new).No_interp())
     ease_vals=[1,2,5]
@@ -30,10 +31,10 @@ def main():
         interpolations.append(easing.Eased(data_vect, data_vect, t_new).power_ease(ease_vals[j]))
     for o,interpolation in enumerate(interpolations):
         static.plot(t_new,interpolation,color=colors[o],alpha=0.9,linewidth=5)
-    static.set_xlim([0,5])
-    fig_static.savefig('media/bar_traces.png',dpi=300)
+    static.set_xlim([0,6.1])
+    fig_static.savefig('media/temp.pdf',dpi=300)
     bar = progressbar.ProgressBar(max_value=num_frames)
-
+    plt.axis('off')
     def animate(z):
         for l,interpolation in enumerate(interpolations):
             #slow way:
@@ -45,6 +46,7 @@ def main():
 
     anim = animation.FuncAnimation(fig_animate, animate,frames=num_frames, blit=False)
     plt.tight_layout()
+    plt.axis('off')
     anim.save('media/fluid_bar.mp4', writer='ffmpeg',fps=60, bitrate=1800)
 
 

@@ -13,6 +13,7 @@ Before generating the easing, you must create the object of class easing
 ```
 All subsequent functions will be called on this object.
 
+ ![traces](media/interpolation_schema.png)
 
 # Power Interpolation
 
