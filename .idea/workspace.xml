@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8980f7f7-70a6-4cc2-b4df-23036ab9a8bd" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Easing-Animations-with-Python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Easing-Animations-with-Python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animation_playground.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/animation_playground.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easing.py" beforeDir="false" afterPath="$PROJECT_DIR$/easing.py" afterDir="false" />
     </list>
     <ignored path="Easing-Animations-with-Python.iws" />
@@ -25,11 +23,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/scatter_traces.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
@@ -37,13 +30,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/easing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="157" column="31" selection-start-line="157" selection-start-column="21" selection-end-line="157" selection-end-column="31" />
+            <state relative-caret-position="39">
+              <caret line="197" column="32" selection-start-line="197" selection-start-column="32" selection-end-line="197" selection-end-column="32" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gifo.gif">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -122,6 +120,8 @@
     <findStrings>
       <find>none</find>
       <find>in_t</find>
+      <find>self.eased</find>
+      <find>.T</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -144,10 +144,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="1440" />
-    <option name="y" value="-180" />
-    <option name="width" value="1920" />
-    <option name="height" value="1080" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -335,16 +333,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-180" width="1920" height="1080" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.112164296" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15010571" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.24950495" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.42079207" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30361447" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.42048192" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -371,8 +369,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/easing.py</url>
-          <line>157</line>
-          <option name="timeStamp" value="8" />
+          <line>68</line>
+          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -412,6 +410,9 @@
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gifo.gif">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
@@ -465,8 +466,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/easing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="945">
-          <caret line="157" column="31" selection-start-line="157" selection-start-column="21" selection-end-line="157" selection-end-column="31" />
+        <state relative-caret-position="39">
+          <caret line="197" column="32" selection-start-line="197" selection-start-column="32" selection-end-line="197" selection-end-column="32" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
           </folding>

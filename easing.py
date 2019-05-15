@@ -100,13 +100,13 @@ class Eased:
             self.eased[j:] = self.data[i + 1]
 
         else:
-            self.eased = np.zeros((np.shape(self.data)[0], len(self.out_t)))
-            for z in range(np.shape(self.data)[0]):
+            self.eased = np.zeros(( len(self.out_t),np.shape(self.data)[1]))
+            for z in range(np.shape(self.data)[1]):
                 j = 0
                 for i in range(len(self.int_t) - 1):
 
-                    start = self.data[z, i]
-                    end = self.data[z, i + 1]
+                    start = self.data[ i,z]
+                    end = self.data[ i + 1,z]
                     for t in np.linspace(0, 2, self.n_steps):
                         if (t < 1):
                             val = (end - start) / 2 * t ** n + start
@@ -115,9 +115,9 @@ class Eased:
                             t -= 2
                             val = (1 - sign) * (-(end - start) / 2) * (t ** n - 2 * (1 - sign)) + start
 
-                        self.eased[z, j] = val
+                        self.eased[ j,z] = val
                         j += 1
-                self.eased[z, j:] = self.data[z, i + 1]
+                self.eased[ j:,z] = self.data[ i + 1,z]
 
         return self.eased
 
@@ -164,13 +164,14 @@ class Eased:
 
         n_dots=int(np.shape(self.data)[1]/2)
         dots=[]
+
         for i in range(n_dots):
             dots.append(ax.plot([], [], linestyle='none', marker='o', markersize=20, color=color))
 
 
         def animate(z):
             for i in range(n_dots):
-                dots[i][0].set_data(it_data[i*2,z],it_data[i*2+1,z])
+                dots[i][0].set_data(it_data[z,i*2],it_data[z,i*2+1])
 
 
             return dots
@@ -194,15 +195,17 @@ class Eased:
 
 
 if __name__ == "__main__":
-    data = np.array(([0, 1, 0, 1, 0, 1, 0, 1, 0, 1], [0, 1, 0, 1, 0, 1, 0, 1, 0, 1])).T
+    data = np.random.rand(12,100)
+    #d1data=np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1]).T
     #
     # time = np.arange(np.shape(data)[1])
 
     #df = pd.DataFrame(data
     #    {'num_legs': np.sin(np.linspace(0, 2 * np.pi, 10)), 'num_wings': np.cos(np.linspace(0, 2 * np.pi, 10))})
 
+    #print(Eased(data).power_ease(n=3))
 
-    Eased(data).scatter_animation2d(n=5, smoothness=40, speed=2,destination='gifo.gif', gif=True)
+    Eased(data).scatter_animation2d(n=5, smoothness=40, speed=2,destination="gifo.mp4", gif=False)
     # df = pd.DataFrame({'num_legs': [2, 4, 8, 0], 'num_wings': [2, 0, 0, 0], 'num_specimen_seen': [10, 2, 1, 8]},
     #                   index=['falcon', 'dog', 'spider', 'fish'])
     #
