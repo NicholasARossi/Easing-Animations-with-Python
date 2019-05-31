@@ -11,26 +11,6 @@ import moviepy.editor as mpy
 
 
 
-# ok so the objective here is to take a
-# class GIF:
-#
-#     """ This class takes the original time vector and raw data (as a m*n matrix) along with an output vector and interpolation function
-#     For the input data, the rows are the different variables and the columns correspond to the time points"""
-#
-#     def __init__(self, data, in_t, out_t):
-#         self.int_t = in_t
-#         self.out_t = out_t
-#         self.n_steps = np.ceil(len(out_t) / len(in_t))
-#         self.data = data
-#         self.n_dims = len(np.shape(data))
-#
-#
-#     def(video:
-#
-#
-#     return self.eased
-
-
 
 
 
@@ -43,6 +23,7 @@ class Eased:
 
         if isinstance(data, pd.DataFrame):
             self.int_t = np.arange(len(data.index))
+            self.labels=np.append(data.index.values,data.index.values[-1])
             self.data = data.values
             self.n_dims = data.shape[1]
         elif isinstance(data, np.ndarray):
@@ -122,7 +103,7 @@ class Eased:
         return self.eased
 
 
-    def scatter_animation2d(self,n=3,smoothness=10,speed=1.0,color='#a8e6cf',inline=True,gif=False,destination=None,plot_kws=None):
+    def scatter_animation2d(self,n=3,smoothness=10,speed=1.0,inline=True,gif=False,destination=None,plot_kws=None,label=False):
         """
         Flexibly create a 2d scatter plot animation.
 
@@ -134,13 +115,12 @@ class Eased:
 
         Parameters
         ----------
-        :param n: Exponent of the power smoothing
-        :param smoothness: how smooth the frames of the animation are
-        :param speed: speed
-        :param color:
-        :param inline:
-        :param gif:
-        :param destination:
+        n: Exponent of the power smoothing
+        smoothness: how smooth the frames of the animation are
+        speed: speed
+        inline:
+        gif:
+        destination:
         :return:
         """
         #Running checks on data for mishappen arrays.
@@ -155,26 +135,42 @@ class Eased:
         if plot_kws is None:
             plot_kws = dict()
 
+
+
+
         it_data=self.power_ease(n,smoothness)
 
-        fig, ax = plt.subplots()
-        ax.set_xlim([min(it_data[0,:])-1,max(it_data[0,:])+1])
-        ax.set_ylim([min(it_data[1,:])-1,max(it_data[1,:])+1])
+        # filling out missing keys
+        vanilla_params={'s':10,'color':'black','xlim':[min(it_data[0,:])-1,max(it_data[0,:])+1],'ylim':[min(it_data[1,:])-1,max(it_data[1,:])+1]}
+        for key in vanilla_params.keys():
+            if key not in plot_kws.keys():
+                plot_kws[key] = vanilla_params[key]
 
+
+
+        fig, ax = plt.subplots()
+        ax.set_xlim(plot_kws['xlim'])
+        ax.set_ylim(plot_kws['ylim'])
+
+
+        if label==True:
+            label_text = ax.text(plot_kws['xlim'][1]*0.75, plot_kws['ylim'][1]*.9, '')
 
         n_dots=int(np.shape(self.data)[1]/2)
         dots=[]
 
         for i in range(n_dots):
-            dots.append(ax.plot([], [], linestyle='none', marker='o', markersize=20, color=color))
+            dots.append(ax.plot([], [], linestyle='none', marker='o', markersize=plot_kws['s'], color=plot_kws['color']))
 
 
         def animate(z):
             for i in range(n_dots):
                 dots[i][0].set_data(it_data[z,i*2],it_data[z,i*2+1])
-
-
-            return dots
+            if label==True:
+                label_text.set_text(self.labels[int(np.floor((z+smoothness/2)/smoothness))])
+                return dots,label_text
+            else:
+                return dots
 
         anim = animation.FuncAnimation(fig, animate, frames=len(self.out_t),interval=400/smoothness/speed, blit=False)
 
@@ -194,8 +190,35 @@ class Eased:
 
 
 
+
+
 if __name__ == "__main__":
-    data = np.random.rand(12,100)
+
+
+    # Pep data for text based scatter change
+    data=pd.read_csv('examples/HDR_comparison.csv')
+    data=data[['ngs','iceV1','iceV2']]
+    d1=data.drop(columns='iceV2').stack().reset_index(drop=True)
+    d2=data.drop(columns='iceV1').stack().reset_index(drop=True)
+
+    new_indexs=[]
+    for idx, row in d1.iteritems():
+        if isinstance(row,str):
+            d1.drop(idx, inplace=True)
+            d2.drop(idx,inplace=True)
+
+    # d1.index=new_indexs
+    # d2.index = new_indexs
+
+    data=pd.DataFrame([d1, d2], index=['V1', 'V2'])
+    # stack a few times
+    data=pd.concat([data, data,data,data])
+    Eased(data).scatter_animation2d(destination='output.mp4',plot_kws={'xlim':[0,70],'ylim':[0,70]},smoothness=40,speed=0.25,label=True)
+    # so we're going to organize this data so it's in the structure that works with this everyother
+
+
+
+    # data = np.random.rand(12,100)
     #d1data=np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1]).T
     #
     # time = np.arange(np.shape(data)[1])
@@ -205,7 +228,7 @@ if __name__ == "__main__":
 
     #print(Eased(data).power_ease(n=3))
 
-    Eased(data).scatter_animation2d(n=5, smoothness=40, speed=2,destination="gifo.mp4", gif=False)
+    # Eased(data).scatter_animation2d(n=5, smoothness=40, speed=2,destination="gifo.mp4", gif=False,plot_kws={"color": "k", "s": 20})
     # df = pd.DataFrame({'num_legs': [2, 4, 8, 0], 'num_wings': [2, 0, 0, 0], 'num_specimen_seen': [10, 2, 1, 8]},
     #                   index=['falcon', 'dog', 'spider', 'fish'])
     #
