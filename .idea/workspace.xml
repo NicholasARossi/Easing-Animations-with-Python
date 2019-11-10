@@ -3,8 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="8980f7f7-70a6-4cc2-b4df-23036ab9a8bd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/animation_playground-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/animation_playground-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animation_playground.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/animation_playground.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easing.py" beforeDir="false" afterPath="$PROJECT_DIR$/easing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gifo.mp4" beforeDir="false" afterPath="$PROJECT_DIR$/gifo.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/african_conflict.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/african_conflicts-1.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/barchart_example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/maps/Africa.dbf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/maps/Africa.shp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/maps/Africa.shx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/africa.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/fluid_bar.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/fluid_scatter.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/scatter_traces.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/temp_africa.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/total_fataliites.mp4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/african_conflict/scatter_example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/brazil/brazil_driver.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gifo.gif" beforeDir="false" />
     </list>
     <ignored path="Easing-Animations-with-Python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,18 +40,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png">
-          <provider selected="true" editor-type-id="images" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/easing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
+            <state relative-caret-position="1266">
+              <caret line="252" column="59" selection-start-line="252" selection-start-column="59" selection-end-line="252" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/indels_overtime.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#18#37#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/indels_overtime2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="27" column="10" selection-start-line="27" selection-end-line="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ink_driver.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,24 +99,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
+            <state relative-caret-position="75255">
               <caret line="5066" selection-start-line="5066" selection-end-line="5066" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../../play/Datamosh/datamosh.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/HDR_comparison.csv">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -84,6 +122,13 @@
       <find>.T</find>
       <find>file_name</find>
       <find>text</find>
+      <find>plot</find>
+      <find>title</find>
+      <find>eas</find>
+      <find>label</find>
+      <find>inline</find>
+      <find>labels</find>
+      <find>loop</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -102,15 +147,17 @@
       <list>
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/../../../../play/Datamosh/datamosh.py" />
+        <option value="$PROJECT_DIR$/ink_driver.py" />
+        <option value="$PROJECT_DIR$/indels_overtime.py" />
+        <option value="$PROJECT_DIR$/indels_overtime2.py" />
         <option value="$PROJECT_DIR$/easing.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1456" />
-    <option name="y" value="-157" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1920" />
-    <option name="height" value="1057" />
+    <option name="height" value="797" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -120,7 +167,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -131,12 +177,13 @@
             <path>
               <item name="Easing-Animations-with-Python" type="b2602c69:ProjectViewProjectNode" />
               <item name="Easing-Animations-with-Python" type="462c0819:PsiDirectoryNode" />
-              <item name="examples" type="462c0819:PsiDirectoryNode" />
+              <item name="outputs" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -150,6 +197,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/examples" />
     </key>
   </component>
@@ -185,31 +233,6 @@
       <option name="USE_PATTERN" value="false" />
       <method />
     </configuration>
-    <configuration name="african_conflict" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Easing-Animations-with-Python" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples/african_conflict" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/african_conflict/african_conflict.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <RunnerSettings RunnerId="PyDebugRunner" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PyDebugRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method v="2" />
-    </configuration>
     <configuration name="barchart_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Easing-Animations-with-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -233,6 +256,27 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method v="2" />
     </configuration>
+    <configuration name="brazil_driver" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Easing-Animations-with-Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/examples/brazil" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/examples/brazil/brazil_driver.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="datamosh" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Easing-Animations-with-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -254,7 +298,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="easing" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="easing" type="PythonConfigurationType" factoryName="Python">
       <module name="Easing-Animations-with-Python" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -267,6 +311,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/easing.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="indels_overtime" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Easing-Animations-with-Python" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/indels_overtime.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -301,19 +366,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.african_conflict" />
+      <item itemvalue="Python.easing" />
       <item itemvalue="Python.barchart_example" />
       <item itemvalue="Python.scatter_example" />
-      <item itemvalue="Python.easing" />
       <item itemvalue="Python.datamosh" />
+      <item itemvalue="Python.indels_overtime" />
+      <item itemvalue="Python.brazil_driver" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.easing" />
+        <item itemvalue="Python.brazil_driver" />
+        <item itemvalue="Python.indels_overtime" />
         <item itemvalue="Python.datamosh" />
         <item itemvalue="Python.scatter_example" />
         <item itemvalue="Python.barchart_example" />
-        <item itemvalue="Python.african_conflict" />
       </list>
     </recent_temporary>
   </component>
@@ -331,16 +397,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1440" y="-157" width="1920" height="1057" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15007898" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20084566" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30259067" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.41968912" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.17872341" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.35301206" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -361,6 +427,22 @@
     <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
       <collection />
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/easing.py</url>
+          <line>268</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/easing.py</url>
+          <line>25</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/examples/african_conflict/african_conflict.py">
@@ -396,16 +478,7 @@
     <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/scatter_traces.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/gifo.gif">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/gifo.gif" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/numpy/core/function_base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2520">
@@ -448,36 +521,70 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../play/Datamosh/datamosh.py" />
     <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py">
+    <entry file="file://$PROJECT_DIR$/indels_overtime.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="5066" selection-start-line="5066" selection-end-line="5066" />
+        <state relative-caret-position="300">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+          <folding>
+            <element signature="e#18#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../../play/Datamosh/datamosh.py">
+    <entry file="file://$PROJECT_DIR$/indels_overtime2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="68" column="25" selection-start-line="68" selection-start-column="25" selection-end-line="68" selection-end-column="25" />
+        <state relative-caret-position="345">
+          <caret line="27" column="10" selection-start-line="27" selection-end-line="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ink_driver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output.mp4">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/pandas/core/generic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75255">
+          <caret line="5066" selection-start-line="5066" selection-end-line="5066" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/examples/HDR_comparison.csv">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/output.mp4">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/examples/brazil/brazil_driver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/easing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1266">
+          <caret line="252" column="59" selection-start-line="252" selection-start-column="59" selection-end-line="252" selection-end-column="59" />
         </state>
       </provider>
     </entry>

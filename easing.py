@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+plt.style.use('rossidata')
 import numpy as np
 import matplotlib.cm as cm
 import pandas as pd
@@ -22,10 +23,13 @@ class Eased:
     def __init__(self, data, in_t=None):
 
         if isinstance(data, pd.DataFrame):
-            self.int_t = np.arange(len(data.index))
-            self.labels=np.append(data.index.values,data.index.values[-1])
-            self.data = data.values
+            self.labels=np.append(data.index.values,np.array([data.index.values[0],data.index.values[0]]))
+            self.int_t = np.arange(len(self.labels)-1)
+
+
+            self.data = np.vstack((data.values,data.values[0,:]))
             self.n_dims = data.shape[1]
+            self.columns=data.columns
         elif isinstance(data, np.ndarray):
             if in_t is None:
                 in_t=np.arange(np.shape(data)[0])
@@ -103,7 +107,7 @@ class Eased:
         return self.eased
 
 
-    def scatter_animation2d(self,n=3,smoothness=10,speed=1.0,inline=True,gif=False,destination=None,plot_kws=None,label=False):
+    def scatter_animation2d(self,n=3,smoothness=10,speed=1.0,gif=False,destination=None,plot_kws=None,label=False):
         """
         Flexibly create a 2d scatter plot animation.
 
@@ -123,6 +127,9 @@ class Eased:
         destination:
         :return:
         """
+
+
+
         #Running checks on data for mishappen arrays.
         if np.shape(self.data)[1]%2!=0:
             print('\033[91m' + "Failed: Data must have an even number of columns")
@@ -131,41 +138,40 @@ class Eased:
             print('\033[91m' + "Warning : Data has more columns (xys) than rows (time)")
 
 
-
         if plot_kws is None:
             plot_kws = dict()
-
-
 
 
         it_data=self.power_ease(n,smoothness)
 
         # filling out missing keys
-        vanilla_params={'s':10,'color':'black','xlim':[min(it_data[0,:])-1,max(it_data[0,:])+1],'ylim':[min(it_data[1,:])-1,max(it_data[1,:])+1]}
+        vanilla_params={'s':10,'color':'black','xlim':[min(it_data[0,:])-1,max(it_data[0,:])+1],'ylim':[min(it_data[1,:])-1,max(it_data[1,:])+1],'xlabel':'','ylabel':'','alpha':1.0,'figsize':(6,6)}
         for key in vanilla_params.keys():
             if key not in plot_kws.keys():
                 plot_kws[key] = vanilla_params[key]
 
 
 
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=plot_kws['figsize'])
         ax.set_xlim(plot_kws['xlim'])
         ax.set_ylim(plot_kws['ylim'])
-
+        ax.set_xlabel(plot_kws['xlabel'])
+        ax.set_ylabel(plot_kws['ylabel'])
 
         if label==True:
-            label_text = ax.text(plot_kws['xlim'][1]*0.75, plot_kws['ylim'][1]*.9, '')
+            label_text = ax.text(plot_kws['xlim'][1]*0.75, plot_kws['ylim'][1]*.9, '',fontsize=18)
 
         n_dots=int(np.shape(self.data)[1]/2)
         dots=[]
-
         for i in range(n_dots):
-            dots.append(ax.plot([], [], linestyle='none', marker='o', markersize=plot_kws['s'], color=plot_kws['color']))
+            dots.append(ax.plot([], [], linestyle='none', marker='o', markersize=plot_kws['s'], color=plot_kws['color'], alpha=plot_kws['alpha']))
+
+
 
 
         def animate(z):
             for i in range(n_dots):
-                dots[i][0].set_data(it_data[z,i*2],it_data[z,i*2+1])
+                dots[0][0].set_data(it_data[z,i*2],it_data[z,i*2+1])
             if label==True:
                 label_text.set_text(self.labels[int(np.floor((z+smoothness/2)/smoothness))])
                 return dots,label_text
@@ -176,13 +182,13 @@ class Eased:
 
 
         if destination is not None:
-            writer = animation.writers['ffmpeg'](fps=60)
-            anim.save(destination, writer=writer, dpi=100)
-
+            if destination.split('.')[-1]=='mp4':
+                writer = animation.writers['ffmpeg'](fps=60)
+                anim.save(destination, writer=writer, dpi=100)
+            if destination.split('.')[-1]=='gif':
+                anim.save(destination, writer='imagemagick', fps=smoothness)
 
         if gif==True:
-            if destination is not None:
-                anim.save(destination,writer='imagemagick',fps=smoothness)
             return Image(url='animation.gif')
         else:
             return anim
@@ -191,30 +197,146 @@ class Eased:
 
 
 
+    def barchart_animation(self,n=3,smoothness=10,speed=1.0,gif=False,destination=None,plot_kws=None,label=False,zero_edges=True,loop=True):
+        '''
+        This barchart animation create line barcharts that morph over time using the eased data class
+
+        It takes the following additional arguments
+        :param n: this is the power curve modifier to passed to power_ease
+        :param smoothness: this is a rendering parameter that determines the relative framerate over the animation
+        :param speed: How quickly does the animation unfold // a value of 1 indicates the default [R>0]
+
+        :param destination: This is the output file (if none it will be displayed inline for jupyter notebooks) - extension determines filetype
+
+
+        :param plot_kws: These are the matplotlib key work arghuments that can be passed in the event the defaults don't work great
+        :param label: This is an optional paramter that will display labels of the pandas rows as the animation cycles through
+
+        :return: rendered animation
+        '''
+
+        #
+        # if loop==True:
+        #     self.data=np.vstack((self.data,self.data[0,:]))
+        #     # self.labels=list(self.labels)+[self.labels[0]]
+
+        it_data = self.power_ease(n, smoothness)
+
+        x_vect=np.arange(len(self.columns))
+
+
+        ### running checks on the paramters
+
+        #Runing checks on parameters
+        assert speed>0, "Speed value must be greater than zero"
+
+
+        # filling out missing keys
+        vanilla_params = {'s': 10, 'color': 'black', 'xlim': [min(x_vect) - 1, max(x_vect) + 1],
+                          'ylim': [np.min(it_data) - 1, np.max(it_data) + 1], 'xlabel': '', 'ylabel': '','title': '',
+                          'alpha': 1.0, 'figsize': (6, 6)}
+        for key in vanilla_params.keys():
+            if key not in plot_kws.keys():
+                plot_kws[key] = vanilla_params[key]
+
+        fig, ax = plt.subplots(figsize=plot_kws['figsize'])
+        ax.set_xlim(plot_kws['xlim'])
+        ax.set_ylim(plot_kws['ylim'])
+        ax.set_title(plot_kws['title'])
+        ax.set_xlabel(plot_kws['xlabel'])
+        ax.set_ylabel(plot_kws['ylabel'])
+        ax.set_xticks(x_vect-np.mean(np.diff(x_vect))/2)
+        ax.set_xticklabels(list(self.columns),rotation=90)
+
+        plt.tight_layout()
+        if label == True:
+            label_text = ax.text(plot_kws['xlim'][1] * 0.25, plot_kws['ylim'][1] * .9, '', fontsize=18)
+
+        lines=[]
+        lines.append(ax.plot([], [], linewidth=3, drawstyle='steps-pre', color=plot_kws['color'], alpha=plot_kws['alpha']))
+
+
+        # add zero padding to the data // makes for prettier histogram presentation
+        if zero_edges==True:
+            zero_pad=np.zeros((it_data.shape[0],1))
+            it_data=np.hstack((zero_pad,it_data,zero_pad))
+            x_vect=[min(x_vect)-1]+list(x_vect)+[max(x_vect)+1]
+
+        def animate(z):
+            lines[0][0].set_data(x_vect, it_data[z, :])
+
+            if label==True:
+                label_text.set_text(self.labels[int(np.floor((z+smoothness/2)/smoothness))])
+                return lines,label_text
+            else:
+                return lines
+
+
+        anim = animation.FuncAnimation(fig, animate, frames=it_data.shape[0],interval=400/smoothness/speed, blit=False)
+
+
+        if destination is not None:
+            if destination.split('.')[-1]=='mp4':
+                writer = animation.writers['ffmpeg'](fps=60)
+                anim.save(destination, writer=writer, dpi=100)
+            if destination.split('.')[-1]=='gif':
+                anim.save(destination, writer='imagemagick', fps=smoothness)
+
+        if gif==True:
+            return Image(url='animation.gif')
+        else:
+            return anim
+
 
 if __name__ == "__main__":
 
 
-    # Pep data for text based scatter change
-    data=pd.read_csv('examples/HDR_comparison.csv')
-    data=data[['ngs','iceV1','iceV2']]
-    d1=data.drop(columns='iceV2').stack().reset_index(drop=True)
-    d2=data.drop(columns='iceV1').stack().reset_index(drop=True)
+    ### tracking to dos
 
-    new_indexs=[]
-    for idx, row in d1.iteritems():
-        if isinstance(row,str):
-            d1.drop(idx, inplace=True)
-            d2.drop(idx,inplace=True)
+    #TODO migragate example animations to test script // note I think these examples should include super simple and more complex options
 
-    # d1.index=new_indexs
-    # d2.index = new_indexs
+    #TODO add motion blur function
 
-    data=pd.DataFrame([d1, d2], index=['V1', 'V2'])
-    # stack a few times
-    data=pd.concat([data, data,data,data])
-    Eased(data).scatter_animation2d(destination='output.mp4',plot_kws={'xlim':[0,70],'ylim':[0,70]},smoothness=40,speed=0.25,label=True)
-    # so we're going to organize this data so it's in the structure that works with this everyother
+    #TODO add gausian glob function
+
+    #TODO make it so we don't double the images inline
+
+
+    #barchart_example
+    data=pd.DataFrame(abs(np.random.random((3, 10))), index=['one', 'two', 'three'])
+    Eased(data).barchart_animation(destination='outputs/output.mp4',plot_kws={'ylim':[0,1]},smoothness=40,label=True)
+
+
+
+
+
+    #
+
+
+
+
+    # # Pep data for text based scatter change
+    # data=pd.read_csv('examples/HDR_comparison.csv')
+    # data=data[['ngs','iceV1','iceV2']]
+    # d1=data.drop(columns='iceV2').stack().reset_index(drop=True)
+    # d2=data.drop(columns='iceV1').stack().reset_index(drop=True)
+    #
+    # new_indexs=[]
+    # for idx, row in d1.iteritems():
+    #     if isinstance(row,str):
+    #         d1.drop(idx, inplace=True)
+    #         d2.drop(idx,inplace=True)
+    #
+    # # d1.index=new_indexs
+    # # d2.index = new_indexs
+    #
+    # data=pd.DataFrame([d1, d2], index=['ice V1', 'ice V2'])
+    # # stack a few times
+    # data=data.append(data.loc['ice V1'])
+    # Eased(data).scatter_animation2d(destination='output.gif',plot_kws={'xlim':[-5,70],'ylim':[-5,70],'xlabel':'NGS HDR %','ylabel':'ICE HDR %','figsize':(6,6)},smoothness=40,label=True)
+    # # so we're going to organize this data so it's in the structure that works with this everyother
+
+
 
 
 

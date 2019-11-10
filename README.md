@@ -34,3 +34,27 @@ without actually interpolating, simply call the No_interp() function
 ```python
     out_data = ease.No_interp()
 ```
+
+<!-- 
+
+# To do list
+* meta ask how do we track these projects?
+options include:
+-jira
+-trello
+-[meat space notepads]
+
+* hit major objectives for MVP
+-cleanup and remererge 
+-save files to scratch, not in the repo
+-2d scatterplot
+-evolving histogram
+-some sort of callable example interface?
+-
+
+
+* nice haves
+-chaginger trendline?
+-flashy example (chroma shift)
+-map overlay?
+-bending curve  (not scatter plot) -->
