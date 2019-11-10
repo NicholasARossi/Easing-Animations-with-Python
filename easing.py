@@ -287,6 +287,53 @@ class Eased:
         else:
             return anim
 
+    def timeseries_animation(self,smoothness=10,speed=1.0,gif=False,destination=None,plot_kws=None,label=False,zero_edges=True,loop=True):
+        data = np.random.normal(size=100000)
+        fig, ax = plt.subplots(1, 2, figsize=(12, 4))
+
+
+
+        # filling out missing keys
+        starting_pos = 25
+
+        max_steps=100
+        vanilla_params = {'s': 10, 'color': 'black', 'xlim': [0, starting_pos],
+                          'ylim': [np.min(data) - 1, np.max(data) + 1], 'xlabel': '', 'ylabel': '','title': '',
+                          'alpha': 1.0, 'figsize': (12, 3)}
+        plot_kws={}
+        x_vect=np.arange(starting_pos)
+        for key in vanilla_params.keys():
+            if key not in plot_kws.keys():
+                plot_kws[key] = vanilla_params[key]
+
+        ax[0].set_ylim(plot_kws['ylim'])
+        ax[0].set_xlim(plot_kws['xlim'])
+        lines=[]
+        lines.append(ax[0].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha']))
+
+        def animate(z):
+            lines[0][0].set_data(x_vect, data[z:z+starting_pos])
+
+
+            return lines
+
+
+        anim = animation.FuncAnimation(fig, animate, frames=max_steps,interval=400/smoothness/speed, blit=False)
+
+
+        if destination is not None:
+            if destination.split('.')[-1]=='mp4':
+                writer = animation.writers['ffmpeg'](fps=60)
+                anim.save(destination, writer=writer, dpi=100)
+            if destination.split('.')[-1]=='gif':
+                anim.save(destination, writer='imagemagick', fps=smoothness)
+
+        if gif==True:
+            return Image(url='animation.gif')
+        else:
+            return anim
+
+
 
 if __name__ == "__main__":
 

@@ -2,27 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8980f7f7-70a6-4cc2-b4df-23036ab9a8bd" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/animation_playground-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/animation_playground-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/animation_playground.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/animation_playground.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easing.py" beforeDir="false" afterPath="$PROJECT_DIR$/easing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/african_conflict.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/african_conflicts-1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/barchart_example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/maps/Africa.dbf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/maps/Africa.shp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/maps/Africa.shx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/africa.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/fluid_bar.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/fluid_scatter.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/scatter_traces.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/temp_africa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/media/total_fataliites.mp4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/african_conflict/scatter_example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/brazil/brazil_driver.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gifo.gif" beforeDir="false" />
     </list>
     <ignored path="Easing-Animations-with-Python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +24,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/easing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1266">
-              <caret line="252" column="59" selection-start-line="252" selection-start-column="59" selection-end-line="252" selection-end-column="59" />
+            <state relative-caret-position="181">
+              <caret line="296" column="25" lean-forward="true" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -129,6 +110,8 @@
       <find>inline</find>
       <find>labels</find>
       <find>loop</find>
+      <find>width_ratios</find>
+      <find>step</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -155,9 +138,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="797" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -445,39 +427,10 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/examples/african_conflict/african_conflict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="112" selection-start-line="112" selection-end-line="115" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/african_conflict/barchart_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="21" selection-start-line="28" selection-start-column="21" selection-end-line="28" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/african_conflict/scatter_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/scatter_traces.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/african_conflict/african_conflict.py" />
+    <entry file="file://$PROJECT_DIR$/examples/african_conflict/barchart_example.py" />
+    <entry file="file://$PROJECT_DIR$/examples/african_conflict/scatter_example.py" />
+    <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/scatter_traces.png" />
     <entry file="file://$PROJECT_DIR$/gifo.gif" />
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/numpy/core/function_base.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -522,9 +475,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../../play/Datamosh/datamosh.py" />
-    <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png" />
+    <entry file="file://$PROJECT_DIR$/examples/HDR_comparison.csv" />
+    <entry file="file://$PROJECT_DIR$/examples/brazil/brazil_driver.py" />
     <entry file="file://$PROJECT_DIR$/indels_overtime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -569,22 +522,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples/HDR_comparison.csv">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/brazil/brazil_driver.py">
+    <entry file="file://$PROJECT_DIR$/../../Timeline/2019/09/azimuth_trial/azimuth/lib/python2.7/site-packages/matplotlib/gridspec.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="251">
+          <caret line="272" column="45" selection-start-line="272" selection-start-column="42" selection-end-line="272" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/easing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1266">
-          <caret line="252" column="59" selection-start-line="252" selection-start-column="59" selection-end-line="252" selection-end-column="59" />
+        <state relative-caret-position="181">
+          <caret line="296" column="25" lean-forward="true" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
         </state>
       </provider>
     </entry>
