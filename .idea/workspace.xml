@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8980f7f7-70a6-4cc2-b4df-23036ab9a8bd" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/animation_playground.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/animation_playground.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easing.py" beforeDir="false" afterPath="$PROJECT_DIR$/easing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media/africa_animated.svg" beforeDir="false" />
     </list>
     <ignored path="Easing-Animations-with-Python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,8 +26,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/easing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="296" column="25" lean-forward="true" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
+            <state relative-caret-position="-2166">
+              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -106,12 +108,13 @@
       <find>plot</find>
       <find>title</find>
       <find>eas</find>
-      <find>label</find>
       <find>inline</find>
       <find>labels</find>
       <find>loop</find>
       <find>width_ratios</find>
       <find>step</find>
+      <find>label</find>
+      <find>30</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -380,7 +383,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20084566" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -415,12 +417,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/easing.py</url>
-          <line>268</line>
+          <line>266</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/easing.py</url>
-          <line>25</line>
+          <line>24</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
@@ -478,6 +480,20 @@
     <entry file="file://$PROJECT_DIR$/examples/african_conflict/media/bar_traces.png" />
     <entry file="file://$PROJECT_DIR$/examples/HDR_comparison.csv" />
     <entry file="file://$PROJECT_DIR$/examples/brazil/brazil_driver.py" />
+    <entry file="file://$PROJECT_DIR$/../../Timeline/2019/09/azimuth_trial/azimuth/lib/python2.7/site-packages/matplotlib/gridspec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="272" column="45" selection-start-line="272" selection-start-column="42" selection-end-line="272" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/easing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2166">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/indels_overtime.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -519,20 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75255">
           <caret line="5066" selection-start-line="5066" selection-end-line="5066" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../Timeline/2019/09/azimuth_trial/azimuth/lib/python2.7/site-packages/matplotlib/gridspec.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="272" column="45" selection-start-line="272" selection-start-column="42" selection-end-line="272" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/easing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="296" column="25" lean-forward="true" selection-start-line="296" selection-start-column="25" selection-end-line="296" selection-end-column="25" />
         </state>
       </provider>
     </entry>

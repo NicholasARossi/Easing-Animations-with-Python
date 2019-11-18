@@ -1,14 +1,13 @@
 import matplotlib.pyplot as plt
 plt.style.use('rossidata')
 import numpy as np
-import matplotlib.cm as cm
 import pandas as pd
 
 from matplotlib import animation, rc
 rc('animation', html='html5')
 
 from IPython.display import HTML, Image
-import moviepy.editor as mpy
+# import moviepy.editor as mpy
 
 
 
@@ -33,7 +32,7 @@ class Eased:
         elif isinstance(data, np.ndarray):
             if in_t is None:
                 in_t=np.arange(np.shape(data)[0])
-                print("No time vector included - defaulting to array length")
+                print("No time vector included - defaulting to number of rows")
 
             self.int_t = in_t
             self.data = data
@@ -107,7 +106,7 @@ class Eased:
         return self.eased
 
 
-    def scatter_animation2d(self,n=3,smoothness=10,speed=1.0,gif=False,destination=None,plot_kws=None,label=False):
+    def scatter_animation2d(self,n=3,smoothness=30,speed=1.0,gif=False,destination=None,plot_kws=None,label=False):
         """
         Flexibly create a 2d scatter plot animation.
 
@@ -145,7 +144,7 @@ class Eased:
         it_data=self.power_ease(n,smoothness)
 
         # filling out missing keys
-        vanilla_params={'s':10,'color':'black','xlim':[min(it_data[0,:])-1,max(it_data[0,:])+1],'ylim':[min(it_data[1,:])-1,max(it_data[1,:])+1],'xlabel':'','ylabel':'','alpha':1.0,'figsize':(6,6)}
+        vanilla_params={'s':10,'color':'black','xlim':[np.min(it_data)-1, np.max(it_data)+1],'ylim':[np.min(it_data)-1,np.max(it_data)+1],'xlabel':'','ylabel':'','alpha':1.0,'figsize':(6,6)}
         for key in vanilla_params.keys():
             if key not in plot_kws.keys():
                 plot_kws[key] = vanilla_params[key]
@@ -168,10 +167,9 @@ class Eased:
 
 
 
-
         def animate(z):
             for i in range(n_dots):
-                dots[0][0].set_data(it_data[z,i*2],it_data[z,i*2+1])
+                dots[i][0].set_data(it_data[z,i*2],it_data[z,i*2+1])
             if label==True:
                 label_text.set_text(self.labels[int(np.floor((z+smoothness/2)/smoothness))])
                 return dots,label_text
@@ -197,7 +195,7 @@ class Eased:
 
 
 
-    def barchart_animation(self,n=3,smoothness=10,speed=1.0,gif=False,destination=None,plot_kws=None,label=False,zero_edges=True,loop=True):
+    def barchart_animation(self,n=3,smoothness=30,speed=1.0,gif=False,destination=None,plot_kws=None,label=False,zero_edges=True,loop=True):
         '''
         This barchart animation create line barcharts that morph over time using the eased data class
 
@@ -287,14 +285,28 @@ class Eased:
         else:
             return anim
 
-    def timeseries_animation(self,smoothness=10,speed=1.0,gif=False,destination=None,plot_kws=None,label=False,zero_edges=True,loop=True):
-        data = np.random.normal(size=100000)
-        fig, ax = plt.subplots(1, 2, figsize=(12, 4))
+    def timeseries_animation(self,smoothness=30,speed=1.0,starting_pos = 25,gif=False,destination=None,plot_kws=None,norm_hist=True):
+        '''
+        This method creates a timeseiers animation of ergodic processes
+
+        :param smoothness:
+        :param speed:
+        :param starting_pos:
+        :param gif:
+        :param destination:
+        :param plot_kws:
+        :param label:
+        :param zero_edges:
+        :param loop:
+        :return:
+        '''
+
+        data = self.data
+        fig, ax = plt.subplots(1, 2, figsize=(12, 4),gridspec_kw={'width_ratios': [3, 1]},sharey=True)
 
 
 
         # filling out missing keys
-        starting_pos = 25
 
         max_steps=100
         vanilla_params = {'s': 10, 'color': 'black', 'xlim': [0, starting_pos],
@@ -307,12 +319,30 @@ class Eased:
                 plot_kws[key] = vanilla_params[key]
 
         ax[0].set_ylim(plot_kws['ylim'])
+        ax[1].set_ylim(plot_kws['ylim'])
+
         ax[0].set_xlim(plot_kws['xlim'])
         lines=[]
         lines.append(ax[0].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha']))
 
+        set_bins=np.linspace(plot_kws['ylim'][0],plot_kws['ylim'][1],20)
+        bins, x = np.histogram(data,bins=set_bins,normed=norm_hist)
+        ax[1].plot(bins, x[1:], linewidth=3, drawstyle='steps-pre', color='#d3d3d3', alpha=0.25)
+
+        histlines=[]
+        histlines.append(ax[1].plot([], [], linewidth=3,  drawstyle='steps-pre',color=plot_kws['color'], alpha=plot_kws['alpha']))
+
+
+        # reverse the orientation of data
+        trace_data=data[::-1]
         def animate(z):
-            lines[0][0].set_data(x_vect, data[z:z+starting_pos])
+            lines[0][0].set_data(x_vect, trace_data[-(starting_pos+1)-z:-1-z])
+
+            # compute the histogram of what what has passed
+            if z>0:
+                bins, x = np.histogram(trace_data[-(z+1):-1],bins=set_bins,normed=norm_hist)
+                histlines[0][0].set_data(bins,x[1:])
+                lines.append(ax[1].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha']))
 
 
             return lines
@@ -348,6 +378,9 @@ if __name__ == "__main__":
 
     #TODO make it so we don't double the images inline
 
+    #TODO use @ with something in this
+
+    #TODO non even time points
 
     #barchart_example
     data=pd.DataFrame(abs(np.random.random((3, 10))), index=['one', 'two', 'three'])
@@ -356,6 +389,7 @@ if __name__ == "__main__":
 
 
 
+    ###plt.subplots(1, 2, gridspec_kw={'width_ratios': [3, 1]})
 
     #
 
