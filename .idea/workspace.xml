@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8980f7f7-70a6-4cc2-b4df-23036ab9a8bd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/animation_playground.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/animation_playground.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easing.py" beforeDir="false" afterPath="$PROJECT_DIR$/easing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/media/africa_animated.svg" beforeDir="false" />
     </list>
     <ignored path="Easing-Animations-with-Python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +23,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/easing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2166">
-              <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+            <state relative-caret-position="345">
+              <caret line="24" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -140,9 +137,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds">
+    <option name="x" value="3407" />
+    <option name="y" value="-157" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="877" />
   </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
@@ -382,7 +381,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="3407" y="-157" width="1440" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20084566" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -419,11 +419,6 @@
           <url>file://$PROJECT_DIR$/easing.py</url>
           <line>266</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/easing.py</url>
-          <line>24</line>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -489,8 +484,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/easing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2166">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        <state relative-caret-position="345">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
