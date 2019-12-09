@@ -2,16 +2,9 @@ import matplotlib.pyplot as plt
 plt.style.use('rossidata')
 import numpy as np
 import pandas as pd
-
 from matplotlib import animation, rc
 rc('animation', html='html5')
-
 from IPython.display import HTML, Image
-# import moviepy.editor as mpy
-
-
-
-
 
 
 
@@ -285,10 +278,9 @@ class Eased:
         else:
             return anim
 
-    def timeseries_animation(self,smoothness=30,speed=1.0,starting_pos = 25,gif=False,destination=None,plot_kws=None,norm_hist=True):
+    def timeseries_animation(self,n=1,speed=1.0,interp_freq=1,starting_pos = 25,gif=False,destination=None,plot_kws=None,norm_hist=True,n_bins=20):
         '''
         This method creates a timeseiers animation of ergodic processes
-
         :param smoothness:
         :param speed:
         :param starting_pos:
@@ -301,19 +293,29 @@ class Eased:
         :return:
         '''
 
-        data = self.data
+
+        data = self.power_ease(n, interp_freq)
+
+
         fig, ax = plt.subplots(1, 2, figsize=(12, 4),gridspec_kw={'width_ratios': [3, 1]},sharey=True)
 
 
 
         # filling out missing keys
 
-        max_steps=100
+        max_steps=len(data)
+
+
         vanilla_params = {'s': 10, 'color': 'black', 'xlim': [0, starting_pos],
                           'ylim': [np.min(data) - 1, np.max(data) + 1], 'xlabel': '', 'ylabel': '','title': '',
-                          'alpha': 1.0, 'figsize': (12, 3)}
+                          'alpha': 1.0, 'figsize': (12, 3),'linestyle':'o'}
         plot_kws={}
-        x_vect=np.arange(starting_pos)
+        x_vect=np.linspace(1,starting_pos,starting_pos*interp_freq)
+
+        # Creating NaN padding at the end for time series plot
+        data = np.append(data, x_vect * np.nan)
+
+        # fill out parameters
         for key in vanilla_params.keys():
             if key not in plot_kws.keys():
                 plot_kws[key] = vanilla_params[key]
@@ -323,24 +325,28 @@ class Eased:
 
         ax[0].set_xlim(plot_kws['xlim'])
         lines=[]
-        lines.append(ax[0].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha']))
+        lines.append(ax[0].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha'],linestyle='none', marker='o'))
 
-        set_bins=np.linspace(plot_kws['ylim'][0],plot_kws['ylim'][1],20)
+        set_bins=np.linspace(plot_kws['ylim'][0],plot_kws['ylim'][1],n_bins)
         bins, x = np.histogram(data,bins=set_bins,normed=norm_hist)
         ax[1].plot(bins, x[1:], linewidth=3, drawstyle='steps-pre', color='#d3d3d3', alpha=0.25)
+
+        #TODO add t- xlabels for ts plot
 
         histlines=[]
         histlines.append(ax[1].plot([], [], linewidth=3,  drawstyle='steps-pre',color=plot_kws['color'], alpha=plot_kws['alpha']))
 
-
+        # This function plots the distribution of flowing information // so we start at the beining and plot forward
         # reverse the orientation of data
         trace_data=data[::-1]
+
+
         def animate(z):
-            lines[0][0].set_data(x_vect, trace_data[-(starting_pos+1)-z:-1-z])
+            lines[0][0].set_data(x_vect, trace_data[-(starting_pos*interp_freq+1)-z:-1-z])
 
             # compute the histogram of what what has passed
             if z>0:
-                bins, x = np.histogram(trace_data[-(z+1):-1],bins=set_bins,normed=norm_hist)
+                bins, x = np.histogram(trace_data[-(z):-1],bins=set_bins,normed=norm_hist)
                 histlines[0][0].set_data(bins,x[1:])
                 lines.append(ax[1].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha']))
 
@@ -348,7 +354,7 @@ class Eased:
             return lines
 
 
-        anim = animation.FuncAnimation(fig, animate, frames=max_steps,interval=400/smoothness/speed, blit=False)
+        anim = animation.FuncAnimation(fig, animate, frames=max_steps,interval=400/speed, blit=False)
 
 
         if destination is not None:
@@ -356,7 +362,7 @@ class Eased:
                 writer = animation.writers['ffmpeg'](fps=60)
                 anim.save(destination, writer=writer, dpi=100)
             if destination.split('.')[-1]=='gif':
-                anim.save(destination, writer='imagemagick', fps=smoothness)
+                anim.save(destination, writer='imagemagick', fps=30)
 
         if gif==True:
             return Image(url='animation.gif')
@@ -366,28 +372,19 @@ class Eased:
 
 
 if __name__ == "__main__":
+    ### This class can create a number of plots // below are a few of the examples. Because this code is modular, these should be view as a jumping off point.
+
+    # #barchart_example
+    # data=pd.DataFrame(abs(np.random.random((3, 10))), index=['one', 'two', 'three'])
+    # Eased(data).barchart_animation(destination='outputs/output.mp4',plot_kws={'ylim':[0,1]},smoothness=40,label=True)
 
 
-    ### tracking to dos
+    #Time Series Example
 
-    #TODO migragate example animations to test script // note I think these examples should include super simple and more complex options
+    data = np.random.rand(100, 1)
+    Eased(data).timeseries_animation(starting_pos=25, speed=0.5, norm_hist=False)
 
-    #TODO add motion blur function
-
-    #TODO add gausian glob function
-
-    #TODO make it so we don't double the images inline
-
-    #TODO use @ with something in this
-
-    #TODO non even time points
-
-    #barchart_example
-    data=pd.DataFrame(abs(np.random.random((3, 10))), index=['one', 'two', 'three'])
-    Eased(data).barchart_animation(destination='outputs/output.mp4',plot_kws={'ylim':[0,1]},smoothness=40,label=True)
-
-
-
+    #
 
     ###plt.subplots(1, 2, gridspec_kw={'width_ratios': [3, 1]})
 

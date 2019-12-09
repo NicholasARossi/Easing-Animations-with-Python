@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8980f7f7-70a6-4cc2-b4df-23036ab9a8bd" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/animation_playground.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/animation_playground.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easing.py" beforeDir="false" afterPath="$PROJECT_DIR$/easing.py" afterDir="false" />
     </list>
     <ignored path="Easing-Animations-with-Python.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/easing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="24" selection-start-line="24" selection-end-line="24" />
+            <state relative-caret-position="350">
+              <caret line="350" column="111" lean-forward="true" selection-start-line="350" selection-start-column="111" selection-end-line="350" selection-end-column="111" />
             </state>
           </provider>
         </entry>
@@ -112,6 +114,8 @@
       <find>step</find>
       <find>label</find>
       <find>30</find>
+      <find>x_vect</find>
+      <find>smoothness</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -137,9 +141,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="3407" />
-    <option name="y" value="-157" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="572" />
+    <option name="y" value="23" />
     <option name="width" value="1440" />
     <option name="height" value="877" />
   </component>
@@ -381,16 +385,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="3407" y="-157" width="1440" height="877" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20084566" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15007898" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.17872341" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.35301206" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.35247526" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -417,8 +421,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/easing.py</url>
-          <line>266</line>
+          <line>259</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/easing.py</url>
+          <line>343</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/easing.py</url>
+          <line>330</line>
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -484,8 +498,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/easing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        <state relative-caret-position="350">
+          <caret line="350" column="111" lean-forward="true" selection-start-line="350" selection-start-column="111" selection-end-line="350" selection-end-column="111" />
         </state>
       </provider>
     </entry>
