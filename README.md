@@ -27,7 +27,7 @@ w=np.random.multivariate_normal([1,1],[[4, 2], [2, 4]],size=size).reshape(1,-1)
 data=pd.DataFrame(np.vstack([u,v,w]),index=['small','medium','large'])
 easing.Eased(data).scatter_animation2d(speed=0.5,label=True,plot_kws={'alpha':0.5},destination='media/multipoint.gif')
 ```
- ![scatter2]('media/multipoint.gif')
+ ![scatter2](media/multipoint.gif)
  
 Animated barcharts...
   ```python
@@ -37,7 +37,7 @@ Animated barcharts...
 
 easing.Eased(data).barchart_animation(plot_kws={'ylim':[0,1],'xlim':[-2,5]},smoothness=40,speed=0.5,label=True,destination='media/animatedbar.gif')
 ```
-![bar]('media/animatedbar.gif')
+![bar](media/animatedbar.gif)
 
 Or time series plots...
   ```python
@@ -46,7 +46,7 @@ easing.Eased(data).timeseries_animation(starting_pos = 25,
                                         speed=25,
                                         plot_kws={'ylim':[-3,3],'bins':np.linspace(-3,3,50)},destination='media/normdist.gif')
 ```
-![ergodic]('media/normdist.gif')
+![ergodic](media/normdist.gif)
 
 # Further Explanations
  
