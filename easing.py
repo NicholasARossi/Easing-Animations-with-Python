@@ -5,7 +5,7 @@ import pandas as pd
 from matplotlib import animation, rc
 rc('animation', html='html5')
 from IPython.display import HTML, Image
-
+from itertools import groupby
 
 
 class Eased:
@@ -206,10 +206,7 @@ class Eased:
         :return: rendered animation
         '''
 
-        #
-        # if loop==True:
-        #     self.data=np.vstack((self.data,self.data[0,:]))
-        #     # self.labels=list(self.labels)+[self.labels[0]]
+
 
         it_data = self.power_ease(n, smoothness)
 
@@ -278,12 +275,12 @@ class Eased:
         else:
             return anim
 
-    def timeseries_animation(self,n=1,speed=1.0,interp_freq=1,starting_pos = 25,gif=False,destination=None,plot_kws=None,norm_hist=True,n_bins=20):
+    def timeseries_animation(self,n=1,speed=1.0,interp_freq=0,starting_pos = 25,gif=False,destination=None,plot_kws=None,final_dist=False):
         '''
         This method creates a timeseiers animation of ergodic processes
         :param smoothness:
         :param speed:
-        :param starting_pos:
+        :param interp_freq: This is the number of steps between each given datapoint interp_freq=1 // no additional steps
         :param gif:
         :param destination:
         :param plot_kws:
@@ -292,24 +289,26 @@ class Eased:
         :param loop:
         :return:
         '''
+        interp_freq+=1
 
+        data = self.power_ease(n=n, smoothness=interp_freq)
 
-        data = self.power_ease(n, interp_freq)
+        assert min(data.shape)==1, "timeseries animation only take 1 dimensional arrays"
 
+        data=[k for k, g in groupby(list(data))]
 
         fig, ax = plt.subplots(1, 2, figsize=(12, 4),gridspec_kw={'width_ratios': [3, 1]},sharey=True)
 
 
-
-        # filling out missing keys
 
         max_steps=len(data)
 
 
         vanilla_params = {'s': 10, 'color': 'black', 'xlim': [0, starting_pos],
                           'ylim': [np.min(data) - 1, np.max(data) + 1], 'xlabel': '', 'ylabel': '','title': '',
-                          'alpha': 1.0, 'figsize': (12, 3),'linestyle':'o'}
-        plot_kws={}
+                          'alpha': 1.0, 'figsize': (12, 3),'linestyle':'none','marker':'o'}
+        if plot_kws==None:
+            plot_kws={}
         x_vect=np.linspace(1,starting_pos,starting_pos*interp_freq)
 
         # Creating NaN padding at the end for time series plot
@@ -325,16 +324,24 @@ class Eased:
 
         ax[0].set_xlim(plot_kws['xlim'])
         lines=[]
-        lines.append(ax[0].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha'],linestyle='none', marker='o'))
+        lines.append(ax[0].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha'],linestyle=plot_kws['linestyle'], marker=plot_kws['marker']))
+        if 'bins' not in plot_kws.keys():
+            plot_kws['bins']=np.linspace(plot_kws['ylim'][0],plot_kws['ylim'][1],20)
 
-        set_bins=np.linspace(plot_kws['ylim'][0],plot_kws['ylim'][1],n_bins)
-        bins, x = np.histogram(data,bins=set_bins,normed=norm_hist)
-        ax[1].plot(bins, x[1:], linewidth=3, drawstyle='steps-pre', color='#d3d3d3', alpha=0.25)
 
-        #TODO add t- xlabels for ts plot
+        #plotting light grey final dist:
+        if final_dist==True:
+            bins, x = np.histogram(data,bins=plot_kws['bins'])
+            ax[1].plot(bins, x[1:], linewidth=3, drawstyle='steps-pre', color='#d3d3d3')
+
+        else:
+            bins, x = np.histogram(data,bins=plot_kws['bins'])
+            ax[1].plot(bins, x[1:], linewidth=3, drawstyle='steps-pre', color='#d3d3d3',alpha=0)
+
 
         histlines=[]
         histlines.append(ax[1].plot([], [], linewidth=3,  drawstyle='steps-pre',color=plot_kws['color'], alpha=plot_kws['alpha']))
+
 
         # This function plots the distribution of flowing information // so we start at the beining and plot forward
         # reverse the orientation of data
@@ -346,7 +353,7 @@ class Eased:
 
             # compute the histogram of what what has passed
             if z>0:
-                bins, x = np.histogram(trace_data[-(z):-1],bins=set_bins,normed=norm_hist)
+                bins, x = np.histogram(trace_data[-(z):-1],bins=plot_kws['bins'])
                 histlines[0][0].set_data(bins,x[1:])
                 lines.append(ax[1].plot([], [], linewidth=3, color=plot_kws['color'], alpha=plot_kws['alpha']))
 
@@ -372,116 +379,8 @@ class Eased:
 
 
 if __name__ == "__main__":
-    ### This class can create a number of plots // below are a few of the examples. Because this code is modular, these should be view as a jumping off point.
 
-    # #barchart_example
-    # data=pd.DataFrame(abs(np.random.random((3, 10))), index=['one', 'two', 'three'])
-    # Eased(data).barchart_animation(destination='outputs/output.mp4',plot_kws={'ylim':[0,1]},smoothness=40,label=True)
+    # simple example : one point moving over time
+    data = np.random.random((10, 2))
+    Eased(data).scatter_animation2d(n=3, speed=0.5, destination='media/singlepoint.gif')
 
-
-    #Time Series Example
-
-    data = np.random.rand(100, 1)
-    Eased(data).timeseries_animation(starting_pos=25, speed=0.5, norm_hist=False)
-
-    #
-
-    ###plt.subplots(1, 2, gridspec_kw={'width_ratios': [3, 1]})
-
-    #
-
-
-
-
-    # # Pep data for text based scatter change
-    # data=pd.read_csv('examples/HDR_comparison.csv')
-    # data=data[['ngs','iceV1','iceV2']]
-    # d1=data.drop(columns='iceV2').stack().reset_index(drop=True)
-    # d2=data.drop(columns='iceV1').stack().reset_index(drop=True)
-    #
-    # new_indexs=[]
-    # for idx, row in d1.iteritems():
-    #     if isinstance(row,str):
-    #         d1.drop(idx, inplace=True)
-    #         d2.drop(idx,inplace=True)
-    #
-    # # d1.index=new_indexs
-    # # d2.index = new_indexs
-    #
-    # data=pd.DataFrame([d1, d2], index=['ice V1', 'ice V2'])
-    # # stack a few times
-    # data=data.append(data.loc['ice V1'])
-    # Eased(data).scatter_animation2d(destination='output.gif',plot_kws={'xlim':[-5,70],'ylim':[-5,70],'xlabel':'NGS HDR %','ylabel':'ICE HDR %','figsize':(6,6)},smoothness=40,label=True)
-    # # so we're going to organize this data so it's in the structure that works with this everyother
-
-
-
-
-
-    # data = np.random.rand(12,100)
-    #d1data=np.array([0, 1, 0, 1, 0, 1, 0, 1, 0, 1]).T
-    #
-    # time = np.arange(np.shape(data)[1])
-
-    #df = pd.DataFrame(data
-    #    {'num_legs': np.sin(np.linspace(0, 2 * np.pi, 10)), 'num_wings': np.cos(np.linspace(0, 2 * np.pi, 10))})
-
-    #print(Eased(data).power_ease(n=3))
-
-    # Eased(data).scatter_animation2d(n=5, smoothness=40, speed=2,destination="gifo.mp4", gif=False,plot_kws={"color": "k", "s": 20})
-    # df = pd.DataFrame({'num_legs': [2, 4, 8, 0], 'num_wings': [2, 0, 0, 0], 'num_specimen_seen': [10, 2, 1, 8]},
-    #                   index=['falcon', 'dog', 'spider', 'fish'])
-    #
-    # Eased(np.arange(10),np.arange(10))
-    #
-    # data = np.array(([0, 1, 0, 1, 0, 1, 0, 1, 0, 1], [0, 1, 0, 1, 0, 1, 0, 1, 0, 1]))
-    # time = np.arange(np.shape(data)[1])
-    # Eased(data, time).scatter_animation2d()
-
-
-    #
-    # """ This main funciton runs an example animation comapring the different animation styles """
-    # plt.close('all')
-    # colors = ['#a8e6cf', '#dcedc1', '#ffd3b6', '#ffaaa5', '#ff8b94']
-    # colors = cm.rainbow(np.linspace(0, 1, 10))
-    #
-    # fig_animate, ax = plt.subplots()
-    # fig_traces, ax0 = plt.subplots(figsize=(12,4))
-    #
-    # ax.set_xlim([-0.1,1.1])
-    # ax.set_ylim([-0.1,5])
-    #
-    # data=np.array([0,1,0,1,0,1,0,1,0,1])
-    # input_time_vector = np.arange(0, 10, 1)
-    # output_time_vector = np.linspace(0, 10, 2000)
-    # ease = Eased(data, input_time_vector, output_time_vector)
-    # labels=['No Interpolation']
-    # data_list = [ease.No_interp()]
-    # for r in range(9):
-    #     data_list.append(ease.power_ease(r + 1))
-    #     labels.append(str(r))
-    # for r in  range(10):
-    #     ax0.plot(output_time_vector[0:401],data_list[r][0:401],color=colors[r], linewidth=3, alpha=0.75,label=labels[r])
-    # ax0.legend(title='exponent')
-    # plt.axis('off')
-    # fig_traces.savefig('media/traces.png',dpi=300)
-    # dots = []
-    # for i, data in enumerate(data_list):
-    #     dots.append(ax.plot([], [], linestyle='none', marker='h', markersize=30, color=colors[i]))
-    #
-    #
-    #
-    # def animate(z):
-    #     for i in range(len(dots)):
-    #         dots[i][0].set_data(data_list[i][z],.25+.5*i)
-    #
-    #
-    #     return dots
-    #
-    # anim = animation.FuncAnimation(fig_animate, animate, frames=len(output_time_vector), blit=False)
-    #
-    #
-    #
-    # writer = animation.writers['ffmpeg'](fps=60)
-    # dpi=300
-    # anim.save('media/interp.mp4', writer=writer,dpi=dpi)
