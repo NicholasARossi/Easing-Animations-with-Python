@@ -1,5 +1,6 @@
 # Easing Animations with Python
-
+ ![chroma](media/chroma.gif)
+ 
 This package is meant to make animations easy in python. There are a number of methods built around an "easing" class.  
 
 # Quick-start guide
