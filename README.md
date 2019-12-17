@@ -6,6 +6,14 @@ This package is meant to make animations easy in python. There are a number of m
 # Quick-start guide
 Full walk-through available [in this notebook](animation_playground.ipynb)
 
+begin by installing via pip 
+
+```python
+pip install easing
+
+from easing import easing
+ ```
+ 
 In order to render any of these animation, you'll need to have the following installed
 
 * FFMPEG for .mp4 renders (brew install ffmpeg on mac)
