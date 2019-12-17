@@ -120,7 +120,6 @@ class Eased:
         """
 
 
-
         #Running checks on data for mishappen arrays.
         if np.shape(self.data)[1]%2!=0:
             print('\033[91m' + "Failed: Data must have an even number of columns")
@@ -378,8 +377,8 @@ class Eased:
 
 
 if __name__ == "__main__":
-
+    print('EASING : A library for smooth animations in python : version 0.1.0')
     # simple example : one point moving over time
-    data = np.random.random((10, 2))
-    Eased(data).scatter_animation2d(n=3, speed=0.5, destination='media/singlepoint.gif')
+    # data = np.random.random((10, 2))
+    # Eased(data).scatter_animation2d(n=3, speed=0.5, destination='media/singlepoint.gif')
 
