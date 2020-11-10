@@ -11,7 +11,7 @@ class Eased:
     """ This class takes the original time vector and raw data (as a m*n matrix or dataframe) along with an output vector and interpolation function
     For the input data, the rows are the different variables and the columns correspond to the time points"""
 
-    def __init__(self, data, in_t=None):
+    def __init__(self, data,data_y=None, in_t=None):
 
         if isinstance(data, pd.DataFrame):
             self.labels=np.append(data.index.values,np.array([data.index.values[0],data.index.values[0]]))
@@ -35,7 +35,7 @@ class Eased:
 
     def No_interp(self,smoothness=10):
         out_t=np.linspace(min(self.int_t),max(self.int_t),len(self.int_t)*smoothness)
-        self.n_steps = np.ceil(len(out_t) / len(self.int_t))
+        self.n_steps = int(np.ceil(len(out_t) / len(self.int_t)))
         self.out_t = out_t
 
         #This Function maps the input vecotor over the outuput time vector without interoplation
@@ -53,7 +53,7 @@ class Eased:
 
     def power_ease(self, n,smoothness=10):
         out_t=np.linspace(min(self.int_t),max(self.int_t),len(self.int_t)*smoothness)
-        self.n_steps = np.ceil(len(out_t) / len(self.int_t))
+        self.n_steps = int(np.ceil(len(out_t) / len(self.int_t)))
         self.out_t = out_t
         sign = n % 2 * 2
         if self.n_dims == 1:
